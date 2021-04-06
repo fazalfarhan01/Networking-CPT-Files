@@ -1,0 +1,21 @@
+enable
+vlan database
+
+## CREATE VLANs - As many as you want
+vlan 10
+vlan 11
+vlan 12
+vlan 13
+
+## EXIT from VLAN Database
+exit
+
+## Select a vlan interface and assign IP
+int vlan 10
+ip address 192.168.5.1 255.255.255.0
+
+## And then assign the interface into that vlan
+int FastEthernet0/2/0
+switchport access vlan 10
+
+## REPEAT
