@@ -1,0 +1,85 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2901/K9 sn FTX1524Z6I2-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 193.162.98.193 255.255.255.224
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 193.162.98.225 255.255.255.240
+ duplex auto
+ speed auto
+!
+interface Serial0/3/0
+ ip address 193.162.98.242 255.255.255.252
+!
+interface Serial0/3/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 193.162.98.241 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
