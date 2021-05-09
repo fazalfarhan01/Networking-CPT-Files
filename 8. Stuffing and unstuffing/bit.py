@@ -3,8 +3,8 @@ from stuffing.cls import cls
 
 if __name__ == "__main__":
     stuff = BitStuffing()
-    stuff.startStuffing() # START STUFFING
-    stuff.startUnstuffing()
+    # stuff.startStuffing() # START STUFFING
+    # stuff.startUnstuffing()
 
     cls() # CLEAR SCREEN
 

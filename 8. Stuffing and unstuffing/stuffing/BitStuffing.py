@@ -14,8 +14,8 @@ class BitStuffing(object):
         self.stuffedColored = ""
         self.unStuffed = []
 
-        self.startStuffing()
-        self.startUnstuffing()
+        # self.startStuffing()
+        # self.startUnstuffing()
     
     def startStuffing(self):
         for bit in self.sequence:

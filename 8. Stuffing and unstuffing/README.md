@@ -1,5 +1,8 @@
 # Python library to perform __Bit Stuffing__ and __Byte Stuffing__
 
+## To install
+`pip install pyStuffing colorama`
+
 ## 1. Bit Stuffing usage example.
 
 ```PYTHON

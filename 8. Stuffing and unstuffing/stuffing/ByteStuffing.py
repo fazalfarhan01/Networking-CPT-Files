@@ -27,8 +27,8 @@ class ByteStuffing(object):
         self.stuffed = []
         self.unstuffed = []
 
-        self.startStuffing()
-        self.startUnStuffing()
+        # self.startStuffing()
+        # self.startUnStuffing()
 
     def startStuffing(self):
         for character in self.sequence:
