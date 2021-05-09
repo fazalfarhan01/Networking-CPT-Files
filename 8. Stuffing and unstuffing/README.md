@@ -6,8 +6,8 @@
 ## 1. Bit Stuffing usage example.
 
 ```PYTHON
-from stuffing.BitStuffing import BitStuffing
-from stuffing.cls import cls
+from pyStuffing.BitStuffing import BitStuffing
+from pyStuffing.cls import cls
 
 stuff = BitStuffing() # INITIALLISE THE CLASS
 stuff.startStuffing() # START STUFFING
@@ -35,8 +35,8 @@ print("Stuffed Sequence: {}\n\n".format(stuff.getStuffedColored()))
 ## 2. Byte Stuffing usage example.
 
 ```PYTHON
-from stuffing.ByteStuffing import ByteStuffing
-from stuffing.cls import cls
+from pyStuffing.ByteStuffing import ByteStuffing
+from pyStuffing.cls import cls
 
 
 if __name__ == "__main__":
