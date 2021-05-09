@@ -48,7 +48,6 @@ class BitStuffing(object):
     def startUnstuffing(self):
         self.count = 0
         for bit in self.stuffed:
-            print(bit, self.count)
             if self.count == 5:
                 self.count = 0
                 continue
