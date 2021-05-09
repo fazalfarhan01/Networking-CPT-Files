@@ -1,6 +1,6 @@
-from typing import Sequence
+from typing import Counter
 from colorama import Fore
-from .cls import cls
+# from .cls import cls
 
 class BitStuffing(object):
     def __init__(self, sequence:list=None):
@@ -12,8 +12,12 @@ class BitStuffing(object):
         self.count = 0
         self.stuffed = []
         self.stuffedColored = ""
+        self.unStuffed = []
+
+        self.startStuffing()
+        self.startUnstuffing()
     
-    def stuff(self):
+    def startStuffing(self):
         for bit in self.sequence:
             if self.count == 5:
                 self.stuffed.append(0)
@@ -40,12 +44,26 @@ class BitStuffing(object):
     
     def getStuffedColored(self) -> str:
         return "[{}, {}, {}]".format(self.bitFlag, self.stuffedColored[1:-1], self.bitFlag)
+
+    def startUnstuffing(self):
+        self.count = 0
+        for bit in self.stuffed:
+            print(bit, self.count)
+            if self.count == 5:
+                self.count = 0
+                continue
+            if bit == 1:
+                self.count += 1
+            self.unStuffed.append(bit)
         
 
 
 if __name__ == "__main__":
-    stuff = BitStuffing([0,0,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0])
-    stuff.stuff()
-    cls()
-    print("Main Sequence:    {}".format(stuff.sequence))
-    print("Stuffed Sequence: {}".format(stuff.getStuffedColored()))
+    stuff = BitStuffing([0,0,1,0,1,1,1,1,1,1,1,1,1,1,0])
+    stuff.startStuffing()
+    stuff.startUnstuffing()
+    # cls()
+    print("Main Sequence:       {}".format(stuff.sequence))
+    print("Stuffed Sequence:    {}".format(stuff.stuffed))
+    print("Un-Stuffed Sequence: {}".format(stuff.unStuffed))
+    print("Stuffed Sequence:    {}".format(stuff.getStuffedColored()))

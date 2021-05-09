@@ -2,10 +2,14 @@ from stuffing.BitStuffing import BitStuffing
 from stuffing.cls import cls
 
 if __name__ == "__main__":
-    stuff = BitStuffing([0,0,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0])
-    stuff.stuff() # START STUFFING
+    stuff = BitStuffing()
+    stuff.startStuffing() # START STUFFING
+    stuff.startUnstuffing()
+
     cls() # CLEAR SCREEN
 
     # PRINT SEQUENCES TO SCREEN
-    print("Main Sequence:    {}".format(stuff.sequence))
-    print("Stuffed Sequence: {}\n\n".format(stuff.getStuffedColored()))
+    print("Main Sequence:       {}".format(stuff.sequence))
+    print("Stuffed Sequence:    {}".format(stuff.stuffed))
+    print("Un-Stuffed Sequence: {}".format(stuff.unStuffed))
+    print("Stuffed Sequence:    {}".format(stuff.getStuffedColored()))

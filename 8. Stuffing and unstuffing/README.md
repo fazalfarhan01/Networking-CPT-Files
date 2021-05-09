@@ -7,7 +7,7 @@ from stuffing.BitStuffing import BitStuffing
 from stuffing.cls import cls
 
 stuff = BitStuffing() # INITIALLISE THE CLASS
-stuff.stuff() # START STUFFING
+stuff.startStuffing() # START STUFFING
 
 cls() # CLEAR SCREEN
 
