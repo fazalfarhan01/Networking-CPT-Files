@@ -1,5 +1,5 @@
-from stuffing.BitStuffing import BitStuffing
-from stuffing.cls import cls
+from pyStuffing.BitStuffing import BitStuffing
+from pyStuffing.cls import cls
 
 if __name__ == "__main__":
     stuff = BitStuffing()

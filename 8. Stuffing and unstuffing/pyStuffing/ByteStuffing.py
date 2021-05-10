@@ -25,7 +25,7 @@ class ByteStuffing(object):
         self.escape = "E"
         self.flag = "F"
         self.stuffed = []
-        self.unstuffed = []
+        self.unStuffed = []
 
         # self.startStuffing()
         # self.startUnStuffing()
@@ -37,7 +37,7 @@ class ByteStuffing(object):
             self.stuffed.append(character)
 
     def startUnStuffing(self):
-        self.unstuffed = _breakAtEscape(self.stuffed)
+        self.unStuffed = _breakAtEscape(self.stuffed)
 
 
 if __name__ == "__main__":
@@ -46,4 +46,4 @@ if __name__ == "__main__":
     stuff.startUnStuffing()
     # cls()
     print(stuff.stuffed)
-    print(stuff.unstuffed)
+    print(stuff.unStuffed)

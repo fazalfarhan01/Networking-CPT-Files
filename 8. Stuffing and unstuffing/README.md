@@ -1,7 +1,7 @@
 # Python library to perform __Bit Stuffing__ and __Byte Stuffing__
 
 ## To install
-`pip install pyStuffing colorama`
+`pip install pyStuffing`
 
 ## 1. Bit Stuffing usage example.
 
@@ -9,14 +9,18 @@
 from pyStuffing.BitStuffing import BitStuffing
 from pyStuffing.cls import cls
 
-stuff = BitStuffing() # INITIALLISE THE CLASS
-stuff.startStuffing() # START STUFFING
+if __name__ == "__main__":
+    stuff = BitStuffing()
+    stuff.startStuffing() # START STUFFING
+    stuff.startUnstuffing()
 
-cls() # CLEAR SCREEN
+    cls() # CLEAR SCREEN
 
-# PRINT SEQUENCES TO SCREEN
-print("Main Sequence:    {}".format(stuff.sequence))
-print("Stuffed Sequence: {}\n\n".format(stuff.getStuffedColored()))
+    # PRINT SEQUENCES TO SCREEN
+    print("Main Sequence:       {}".format(stuff.sequence))
+    print("Stuffed Sequence:    {}".format(stuff.stuffed))
+    print("Un-Stuffed Sequence: {}".format(stuff.unStuffed))
+    print("Stuffed Sequence:    {}".format(stuff.getStuffedColored()))
 ```
 
 ### Explanation
@@ -49,7 +53,7 @@ if __name__ == "__main__":
     
     print("Sequence:  {}".format(stuff.sequence))
     print("Stuffed:   {}".format(stuff.stuffed))
-    print("Unstuffed: {}".format(stuff.unstuffed))
+    print("Un-stuffed: {}".format(stuff.unStuffed))
 ```
 ### Explanation
 1. Initiallise the class `ByteStuffing()` You can pass the byte sequence to the class as a list.
