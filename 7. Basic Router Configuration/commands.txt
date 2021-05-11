@@ -1,0 +1,83 @@
+######################
+ON THE ROUTER DIRECTLY
+######################
+enable
+configure termial
+hostname ROUTER
+no ip domain-lookup
+enable secret cisco
+banner motd E
+###############################
+          From Router
+Unauthorised access not allowed
+###############################
+
+interface GigabitEthernet 0/0
+no shutdown
+ip address 192.168.0.1 255.255.255.0
+exit
+
+interface GigabitEthernet 0/1
+no shutdown
+ip address 172.16.0.1 255.255.255.0
+exit
+
+line console 0
+password ciscoconsole
+exec-timeout 6 45
+logging synchronous
+history size 15
+login
+
+lint vty 0 15
+password ciscotelnet
+exec-timeout 8 20
+history size 15
+logging synchronous
+login
+end
+
+save running-configuration startup-configuration
+exit
+
+#################################################
+ON THE SWITCH FROM THE LAPTOP USING CONSOLE CABLE
+#################################################
+
+enable
+configure terminal
+hostname LOCAL_SWITCH
+banner motd E
+##################################
+           From Switch
+
+Unauthorised access is not allowed
+##################################
+
+enable secret cisco
+no ip domain-lookup
+
+line console 0
+password ciscoconsole
+exec-timeout 6 45
+logging synchronous
+history size 15
+login
+
+line vty 0 15
+password ciscotelnet
+exec-timeout 8 20
+history size 15
+logging synchronous
+login
+end
+
+configure termial
+interface vlan 1
+ip address 192.168.0.2 255.255.255.0
+ip default-gateway 192.168.0.1
+no shutdown
+
+save running-configuration startup-configuration
+
+exit
