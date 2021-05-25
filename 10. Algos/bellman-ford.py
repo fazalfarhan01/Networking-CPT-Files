@@ -1,3 +1,5 @@
+from terminaltables import SingleTable
+from common import clear
 class Graph:
 
 	def __init__(self, vertices):
@@ -9,10 +11,15 @@ class Graph:
 		self.graph.append([u, v, w])
 		
 	# utility function used to print the solution
-	def printArr(self, dist):
-		print("Vertex Distance from Source")
-		for i in range(self.V):
-			print("{0}\t\t{1}".format(i, dist[i]))
+	def printArr(self,src, dist):
+		clear()
+		sourceInfo = ["Source"], [src]
+		sourceTable = SingleTable(sourceInfo)
+		print(sourceTable.table)
+
+		data = ["Vertex"]+list(range(self.V)), ["Distance from source"]+dist
+		table = SingleTable(data)
+		print(table.table)
 	
 	def BellmanFord(self, src):
 		dist = [float("Inf")] * self.V
@@ -25,7 +32,7 @@ class Graph:
 				if dist[u] != float("Inf") and dist[u] + w < dist[v]:
 						print("Graph contains negative weight cycle")
 						return
-		self.printArr(dist)
+		self.printArr(src,dist)
 
 # g = Graph(5)
 # g.addEdge(0, 1, -1)

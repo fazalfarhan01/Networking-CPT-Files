@@ -12,12 +12,18 @@ class Graph():
 
     def printFinalDistances(self,src, dist):
         clear()
+        self.printGraph()
         sourceInfo = ["Source"], [src]
         sourceTable = SingleTable(sourceInfo)
         print(sourceTable.table)
 
         data = ["Vertex"]+list(range(self.V)), ["Distance from source"]+dist
         table = SingleTable(data)
+        print(table.table)
+    
+    def printGraph(self):
+        table = SingleTable(self.graph)
+        table.inner_row_border = True
         print(table.table)
         
 
