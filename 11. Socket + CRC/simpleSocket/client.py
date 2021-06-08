@@ -1,8 +1,5 @@
 import socket
 
-# AF_INET Address Family of IPv4
-# SOCK_STREAM TCP Protocol
-
 IP = "127.0.0.1"
 
 s = socket.socket()
