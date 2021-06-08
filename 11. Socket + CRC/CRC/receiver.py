@@ -1,5 +1,7 @@
 # First of all import the socket library
 import socket
+
+
 def bitstring_to_bytes(s):
     v = int(s, 2)
     b = bytearray()
@@ -7,6 +9,7 @@ def bitstring_to_bytes(s):
         b.append(v & 0xff)
         v >>= 8
     return bytes(b[::-1])
+
 
 def xor(a, b):
     result = []
@@ -74,7 +77,7 @@ while True:
 
     # Get data from client
     data = connection.recv(2048)
-    print(data)
+    # print(data)
     data = data.decode("utf-8")
 
     print(data)
@@ -83,12 +86,13 @@ while True:
         break
 
     ans = decodeData(data, key)
-    # print("Remainder after decoding is->"+ans)
+    print("Remainder after decoding is: "+ans)
 
     # If remainder is all zeros then no error occured
     temp = "0" * (len(key) - 1)
     if ans == temp:
-        connection.sendall(bytes("Data: " + data[:-3] + " Received. No error FOUND", "utf-8"))
+        connection.sendall(
+            bytes("Data: " + data[:-3] + " Received. \nNo error FOUND", "utf-8"))
     else:
         connection.sendall(bytes("The received data is currupted.", "utf-8"))
 

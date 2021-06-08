@@ -15,3 +15,5 @@ while True:
     received += msg.decode("utf-8")
 
 print(received)
+
+input("Press Enter to exit..")
