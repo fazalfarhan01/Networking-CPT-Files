@@ -1,0 +1,88 @@
+hostname ROUTER1
+no ip domain-lookup
+enable password cisco
+banner motd *
+###################################
+
+             ROUTER1
+  Enter password "cisco" to login
+
+###################################
+*
+
+line console 0
+password ciscoconsole
+
+line vty 0 4
+password ciscotelnet
+
+interface FastEthernet 0/0
+ip address 192.168.1.100  255.255.255.0
+no shutdown
+
+interface Serial0/0/0
+ip address 100.1.1.1 255.255.255.252
+no shutdown
+
+end
+copy run start
+
+#########################################
+
+hostname ROUTER2
+no ip domain-lookup
+enable password cisco
+banner motd *
+###################################
+
+             ROUTER2
+  Enter password "cisco" to login
+
+###################################
+*
+
+line console 0
+password ciscoconsole
+
+line vty 0 4
+password ciscotelnet
+
+interface fastEthernet 0/0
+ip address 200.1.1.100 255.255.255.0
+no shutdown
+
+interface Serial0/0/0
+ip address 100.1.1.2 255.255.255.252
+no shutdown
+
+
+end
+copy run start
+
+
+########### ROUTER 1 ############
+
+########## STATIC NAT ###########
+ip nat inside source static 192.168.1.2 100.1.1.252
+
+########## DYNAMIC NAT ###########
+access-list 1 permit 192.168.1.0 0.0.0.255
+ip nat pool public 100.1.1.129 100.1.1.200 netmask 255.255.255.128
+
+ip nat inside source list 1 pool public
+
+################# PAT #################
+ip nat pool public-access 100.1.1.32 100.1.1.35 netmask 255.255.255.252
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+ip nat inside source list 1 pool public-access overload
+
+interface FastEthernet 0/0
+ip nat inside
+exit
+
+interface serial 0/0/0
+ip nat outside
+
+end
+copy run start
