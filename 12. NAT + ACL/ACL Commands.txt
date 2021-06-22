@@ -1,0 +1,124 @@
+######################
+##    ROUTER1
+######################
+hostname ROUTER1
+no ip domain-lookup
+enable password cisco
+banner motd *
+###################################
+
+             ROUTER1
+  Enter password "cisco" to login
+
+###################################
+*
+
+line console 0
+password ciscoconsole
+
+line vty 0 4
+password ciscotelnet
+
+interface Serial0/0
+ip address 10.0.0.1 255.255.255.252
+
+interface FastEthernet0/0
+ip address 192.168.1.100 255.255.255.0
+
+end
+copy running-config startup-config
+
+######################
+##     ROUTER2
+######################
+
+hostname ROUTER2
+no ip domain-lookup
+enable password cisco
+banner motd *
+###################################
+
+             ROUTER2
+  Enter password "cisco" to login
+
+###################################
+*
+
+line console 0
+password ciscoconsole
+
+line vty 0 4
+password ciscotelnet
+
+interface FastEthernet0/0
+ip address 192.168.2.100 255.255.255.0
+
+interface Serial0/0
+ip address 10.0.0.2 255.255.255.252
+
+interface Serial0/1
+ip address 11.0.0.1 255.255.255.252
+
+end
+copy running-config startup-config
+
+
+######################
+##     ROUTER3
+######################
+
+hostname ROUTER3
+no ip domain-lookup
+enable password cisco
+banner motd *
+###################################
+
+             ROUTER3
+  Enter password "cisco" to login
+
+###################################
+*
+
+line console 0
+password ciscoconsole
+
+line vty 0 4
+password ciscotelnet
+
+interface FastEthernet0/0
+ip address 192.168.3.100 255.255.255.0
+
+interface Serial0/0
+ip address 11.0.0.2 255.255.255.252
+
+end
+copy running-config startup-config
+
+
+
+################# Static NAT #######################
+
+ip access-list standard 1
+deny 192.168.1.0 0.0.0.255
+permit any
+end
+
+configure terminal
+int serial 0/0
+ip access-group 1 in
+end
+exit
+
+ ################### EXTENDED NAT ###################
+
+ip access-list extended EXT1
+deny ip 192.168.1.0 0.0.0.255 host 192.168.2.1
+permit ip any any 
+end
+
+configure terminal
+interface serial 0/0
+
+ip access-group EXT1 out
+end
+copy running-config startup-config
