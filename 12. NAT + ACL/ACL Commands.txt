@@ -96,7 +96,7 @@ copy running-config startup-config
 
 
 
-################# Static NAT #######################
+################# Static ACL #######################
 
 ip access-list standard 1
 deny 192.168.1.0 0.0.0.255
@@ -109,7 +109,7 @@ ip access-group 1 in
 end
 exit
 
- ################### EXTENDED NAT ###################
+ ################### EXTENDED ACL ###################
 
 ip access-list extended EXT1
 deny ip 192.168.1.0 0.0.0.255 host 192.168.2.1
